@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Chatbot{% endblock %}
+
+{% block styles %}
+<style>
+  .chat-area {
+    background: #000;
+    border: 2px solid #39ff14;
+    border-radius: 0;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 12px 10px;
+    margin-bottom: 18px;
+    font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 22px;
+    color: #39ff14;
+  }
+  .chat-message {
+    margin-bottom: 10px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #39ff14;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .chat-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .chat-input {
+    flex: 1;
+    border: 2px solid #39ff14;
+    border-radius: 0;
+    padding: 8px 12px;
+    font-size: 22px;
+    font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+    background: #000;
+    color: #39ff14;
+    outline: none;
+  }
+  .chat-input:focus {
+    box-shadow: 0 0 8px #39ff14;
+  }
+  .send-btn {
+    background: #000;
+    color: #39ff14;
+    font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 8px 24px;
+    border: 2px solid #39ff14;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .send-btn:hover {
+    background: #39ff14;
+    color: #000;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="font-size: 36px; font-weight: bold; margin-bottom: 18px; letter-spacing: 2px; color: #39ff14; font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;">CHATBOT</div>
+<div class="chat-area" id="chat-area">
+  <!-- Chat messages will be appended here by JS -->
+</div>
+<form id="chat-form" autocomplete="off">
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" class="chat-input" placeholder="Enter your message..." required />
+    <button type="submit" class="send-btn">SUBMIT</button>
+  </div>
+</form>
+<script>
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatArea = document.getElementById('chat-area');
+
+  function appendMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message ' + sender;
+    msgDiv.textContent = text;
+    chatArea.appendChild(msgDiv);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  chatForm.onsubmit = async function(e) {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if (!message) return;
+    appendMessage(message, 'user');
+    chatInput.value = '';
+    try {
+      const response = await fetch('', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: new URLSearchParams({message})
+      });
+      const data = await response.json();
+      appendMessage(data.response, 'bot');
+    } catch (err) {
+      appendMessage('Error: Could not get response.', 'bot');
+    }
+  };
+</script>
+{% endblock %}

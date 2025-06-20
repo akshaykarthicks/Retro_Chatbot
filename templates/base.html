@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Terminal Chatbot{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            color: #39ff14;
+            font-family: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .terminal-frame {
+            border: 4px double #39ff14;
+            margin: 40px auto;
+            max-width: 600px;
+            min-height: 500px;
+            padding: 32px 32px 24px 32px;
+            box-shadow: 0 0 24px #39ff14;
+            background: #000;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="terminal-frame">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

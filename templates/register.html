@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Register</title>
+</head>
+<body>
+    
+</body>
+</html><div class="register-container">
+  <div class="ie-window">
+    <div class="ie-title-bar">
+      <span class="ie-icon"></span>
+      Register
+      <div class="ie-buttons">
+        <span class="ie-btn min"></span>
+        <span class="ie-btn max"></span>
+        <span class="ie-btn close"></span>
+      </div>
+    </div>
+    <div class="ie-card-body">
+      {% if error_message %}
+        <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group c">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="password" class="form-control" id="password1" name="password1" required>
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm Password</label>
+          <input type="password" class="form-control" id="password2" name="password2" required>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <a class="os-link-btn" href="{% url 'login' %}">Back to Login</a>
+    </div>
+  </div>
+</div>
+<style>
+  body {
+    background: #008080;
+    font-family: Tahoma, 'MS Sans Serif', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .ie-window {
+    width: 350px;
+    margin: 80px auto 0 auto;
+    border: 2px solid #000080;
+    border-radius: 6px;
+    background: #e9e9e9;
+    box-shadow: 0 8px 32px #000a, 0 1.5px 0 #fff2 inset;
+    overflow: hidden;
+  }
+  .ie-title-bar {
+    background: linear-gradient(90deg, #2059c1 0%, #3a7bd5 100%);
+    color: #fff;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 2px solid #000080;
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .ie-title-bar .ie-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    background: url('https://raw.githubusercontent.com/rohitguptab/WINXP-Wallpapers/main/Bliss.jpg') no-repeat center/contain;
+    display: inline-block;
+  }
+  .ie-title-bar .ie-buttons {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    display: flex;
+    gap: 2px;
+  }
+  .ie-btn {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #888;
+    background: #e9e9e9;
+    border-radius: 2px;
+    margin-left: 2px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+  }
+  .ie-btn.close { background: #e81123; }
+  .ie-btn.min { background: #f9d923; }
+  .ie-btn.max { background: #3a7bd5; }
+  .ie-card-body {
+    padding: 30px 25px 25px 25px;
+  }
+  .form-group {
+    margin-bottom: 18px;
+  }
+  label {
+    font-weight: bold;
+    color: #222;
+    font-size: 13px;
+    margin-bottom: 4px;
+    display: block;
+  }
+  input[type=text], input[type=password] {
+    border: 1.5px solid #aaa;
+    border-radius: 3px;
+    padding: 7px 3px;
+    font-size: 15px;
+    width: 100%;
+    background: #fff;
+    color: #222;
+    margin-bottom: 2px;
+    font-family: Tahoma, 'MS Sans Serif', Arial, sans-serif;
+  }
+  input[type=text]:focus, input[type=password]:focus {
+    outline: 1.5px solid #2059c1;
+    background: #f0f8ff;
+  }
+  button[type=submit] {
+    background: #2059c1;
+    color: white;
+    font-family: Tahoma, 'MS Sans Serif', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 0;
+    border: 1.5px solid #000080;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 2px 0 #fff2 inset;
+    transition: background 0.2s;
+  }
+  button[type=submit]:hover {
+    background: #3a7bd5;
+  }
+  .alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .os-link-btn {
+    background: #e9e9e9;
+    color: #2059c1;
+    font-family: Tahoma, 'MS Sans Serif', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 0;
+    border: 1.2px solid #2059c1;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 60%;
+    margin: 8px auto 0 auto;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 2px 0 #fff2 inset;
+    display: block;
+    transition: background 0.2s;
+  }
+  .os-link-btn:hover {
+    background: #d0e1ff;
+  }
+</style>
