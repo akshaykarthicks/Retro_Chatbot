@@ -11,7 +11,7 @@ from django.utils import timezone
 from .models import Chat
 
 
-openai.api_key = "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"
+openai.api_key = "api_key"
 openai.api_base = "https://openrouter.ai/api/v1"
 
 def ask_openai(question):
