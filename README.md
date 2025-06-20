@@ -1,6 +1,8 @@
 # Django Chatbot App
 
 This is a Django-based chatbot web application that integrates with OpenAI models via OpenRouter. It features user registration, login, and a simple chat interface.
+
+
 ![image](https://github.com/user-attachments/assets/0c5fc9ab-a86d-4362-98ef-f0831da6aa33)
 ![image](https://github.com/user-attachments/assets/8a9b2de2-9fb3-4be0-acc8-1d65e4c3aa41)
 ![image](https://github.com/user-attachments/assets/a585506b-0563-4999-b75b-9af3c1ff7ffe)
