@@ -1,6 +1,6 @@
 # Django Chatbot App
 
-This is a Retro style  Django-based chatbot web application that integrates with OpenAI models via OpenRouter. It features user registration, login, and a simple chat interface.
+This is a Retro style  Django-based chatbot web application that integrates with OpenAI models via OpenRouter. It features user registration, login, and a simple chat interface.open coode from livikit 
 
 
 ![image](https://github.com/user-attachments/assets/0c5fc9ab-a86d-4362-98ef-f0831da6aa33)
